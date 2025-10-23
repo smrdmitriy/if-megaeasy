@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПОСЛЕДНИЙ ШАНС</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background: #0a0a12;
+            color: #00ffea;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a12 0%, #151528 100%);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .cyber-button {
+            background: linear-gradient(135deg, #ff0080, #00ffea);
+            color: #0a0a12;
+            border: none;
+            padding: 25px 60px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 
+                0 0 20px rgba(255, 0, 128, 0.5),
+                0 0 40px rgba(0, 255, 234, 0.3);
+        }
+        
+        .cyber-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .cyber-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 0 30px rgba(255, 0, 128, 0.7),
+                0 0 60px rgba(0, 255, 234, 0.5);
+        }
+        
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+        
+        .cyber-button:active {
+            transform: translateY(0);
+        }
+        
+        .easy-text {
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ffea;
+            text-shadow: 0 0 10px rgba(0, 255, 234, 0.7);
+            opacity: 0;
+            animation: fadeGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeGlow {
+            0%, 100% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffea, #ff0080, #00ffea, transparent);
+            animation: scan 2s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes scan {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+        
+        .grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 234, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 234, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+        }
+        
+        .pulse {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 255, 234, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.2;
+            }
+        }
+        
+        .pulse:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .pulse:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+        
+        .pulse:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid"></div>
+    <div class="scanline"></div>
+    <div class="pulse"></div>
+    <div class="pulse"></div>
+    <div class="pulse"></div>
+    
+    <div class="container">
+        <a href="mega_easy.html" class="cyber-button">
+            ПОСЛЕДНИЙ ШАНС
+        </a>
+    </div>
+    
+    <div class="easy-text">
+        ЭТО МЕГА ЛЕГКО
+    </div>
+
+    <script>
+        // Добавляем случайные мерцающие точки для атмосферы
+        for (let i = 0; i < 20; i++) {
+            const dot = document.createElement('div');
+            dot.style.position = 'absolute';
+            dot.style.width = '2px';
+            dot.style.height = '2px';
+            dot.style.background = '#00ffea';
+            dot.style.borderRadius = '50%';
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.top = Math.random() * 100 + '%';
+            dot.style.boxShadow = '0 0 5px #00ffea';
+            dot.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite`;
+            document.body.appendChild(dot);
+        }
+        
+        // Добавляем стили для анимации мерцания
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes twinkle {
+                0%, 100% { opacity: 0; }
+                50% { opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
